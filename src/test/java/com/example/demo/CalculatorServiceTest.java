@@ -20,6 +20,7 @@ public class CalculatorServiceTest {
         Assertions.assertEquals(calculatorService.calculate("18 / 3"), 6);
         Assertions.assertEquals(calculatorService.calculate("18 -3 / 5  * 12"), 36);
         Assertions.assertEquals(calculatorService.calculate("1.2 + 3.4"), 4.6);
+        Assertions.assertEquals(calculatorService.calculate("-1.2 + 3.4"), 2.2);
     }
 
 

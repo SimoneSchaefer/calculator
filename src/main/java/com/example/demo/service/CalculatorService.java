@@ -16,7 +16,7 @@ public class CalculatorService {
     public boolean valid(String formula) {
         String formatted = prepare(formula);
         String aaa = formatted.replace(".", ""); // FIXME
-        Pattern pattern = Pattern.compile("^\\d+([+|\\-|\\/|*]\\d+)+$");
+        Pattern pattern = Pattern.compile("^-?\\d+([+|\\-|\\/|*]\\d+)+$");
         Matcher matcher = pattern.matcher(aaa);
         return matcher.matches();
     }
@@ -74,7 +74,13 @@ public class CalculatorService {
     }
 
     private Double calculateLastBatch(Double result, String currentParsedNumber, String lastOperator) {
-        Double currentNumber = Double.parseDouble(currentParsedNumber.toString());
+        Double currentNumber = 0.0;
+        if (!currentParsedNumber.isEmpty()) {
+            currentNumber = Double.parseDouble(currentParsedNumber);
+        } else {
+            currentNumber = 0.0;
+        }
+
         if (result == null) {
             return currentNumber;
         }
